@@ -29,6 +29,17 @@
   <%= submit_tag('Submit') %>
 <% end %> -->
 
+<% if @user.errors.any? %>
+  <div id='error_explanation' >
+    <h3><%= pluralize(@user.errors.count, "error") %> prevented this form from submitting correctly.</h3>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %> 
+      <li><%=msg%></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |f| %> 
   <%= f.label :username, 'Username:' %>
   <%= f.text_field :username, value: 'Your username' %> 

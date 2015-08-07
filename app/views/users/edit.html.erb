@@ -1,6 +1,15 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
 
+<% if @user.errors.any? do |error| %>
+  <%= pluralize(@user.errors.count, 'error') %> prevented this form from submitting.
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul><% end %>
+<% end %>
+
 <%= form_for @user do |f| %> 
   <%= f.label :username, 'Username:' %>
   <%= f.text_field :username, value: "#{@user.username}" %> 
